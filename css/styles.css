@@ -1109,20 +1109,50 @@ footer {
   flex-wrap: wrap; margin-bottom: 26px;
 }
 #arcade-back, #arcade-expand { white-space: nowrap; }
+/* Focus button — stands out as the primary action */
+#arcade-expand {
+  background: var(--gold); color: #06091a; font-weight: 600;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), 0 0 14px var(--gold-glow);
+  animation: focusPulse 2.2s ease-in-out infinite;
+}
+#arcade-expand:hover {
+  background: var(--gold); color: #06091a; border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), 0 0 22px var(--gold-glow);
+  transform: translateY(-1px);
+}
+@keyframes focusPulse {
+  0%, 100% { box-shadow: 0 0 0 1px var(--gold), 0 0 10px var(--gold-glow); }
+  50%      { box-shadow: 0 0 0 1px var(--gold), 0 0 22px var(--gold-glow); }
+}
+@media (prefers-reduced-motion: reduce) { #arcade-expand { animation: none; } }
+/* per-game expand button injected into each game's HUD */
+.game-expand-btn {
+  padding: 7px 11px; line-height: 1; flex-shrink: 0;
+  border-color: var(--border-gold); color: var(--gold);
+}
+.game-expand-btn:hover { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
 
-/* Focus / expand mode — active game fills the screen, page behind is locked */
+/* Focus / expand mode — ONLY the active game fills the screen, page locked */
 body.arcade-locked { overflow: hidden; }
 #arcade-stage.arcade-expanded {
   position: fixed; inset: 0; z-index: 2000;
-  margin: 0; padding: 18px clamp(14px, 4vw, 40px);
-  background: rgba(3, 5, 14, 0.94); backdrop-filter: blur(8px);
+  margin: 0; padding: 14px;
+  background: rgba(3, 5, 14, 0.96); backdrop-filter: blur(10px);
   overflow-y: auto; overscroll-behavior: contain;
-  display: flex; flex-direction: column; align-items: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
+/* collapse the toolbar down to a single floating Exit control */
 #arcade-stage.arcade-expanded .arcade-bar {
-  width: 100%; max-width: 820px; margin-bottom: 18px;
+  position: absolute; top: 12px; right: 12px; margin: 0; z-index: 5;
 }
-#arcade-stage.arcade-expanded .arcade-panel { width: 100%; margin: auto 0; }
+#arcade-stage.arcade-expanded .arcade-quick,
+#arcade-stage.arcade-expanded #arcade-back { display: none; }
+/* size the single active board to fill the viewport (square = limited by height) */
+#arcade-stage.arcade-expanded .arcade-panel { width: auto; margin: 0; }
+#arcade-stage.arcade-expanded .game-frame {
+  width: min(94vw, 82vh); max-width: none;
+}
 .arcade-quick { display: flex; gap: 6px; flex-wrap: wrap; }
 .qchip {
   display: inline-flex; align-items: center; gap: 6px;

@@ -862,7 +862,7 @@
     const cvs = document.getElementById('flappy-canvas');
     const ctx = cvs.getContext('2d');
     const W = cvs.width, H = cvs.height;
-    const GRAV = 0.12, FLAP = -4.4, SPEED = 2.0, MAX_VY = 4.2;
+    const GRAV = 0.29, FLAP = -6.6, SPEED = 4.8, MAX_VY = 9.5;
     const GAP = 150, PIPE_W = 56, PIPE_IV = 1700;
     const BIRD_X = 90, BIRD_R = 13;
     const GROUND_H = 30, playH = H - GROUND_H, SKY_W = W;
@@ -1116,7 +1116,7 @@
       for (let r=0;r<ROWS;r++) for (let c=0;c<COLS;c++)
         bricks.push({ x:GAPB+c*(BRICK_W+GAPB), y:BRICK_TOP+r*(BRICK_H+GAPB), w:BRICK_W, h:BRICK_H, alive:true, color:PALETTE[r%PALETTE.length] });
     }
-    function launch() { ball = { x:W/2, y:PADDLE_Y-20, vx:(Math.random()<0.5?-1:1)*1.7, vy:-2.2, r:6 }; }
+    function launch() { ball = { x:W/2, y:PADDLE_Y-20, vx:(Math.random()<0.5?-1:1)*4.1, vy:-5.0, r:6 }; }
     function reset() { px=(W-PADDLE_W)/2; score=0; lives=3; buildBricks(); launch(); state='running'; updateHud(); }
     function loseLife() { lives--; updateHud(); if (lives<=0) state='dead'; else { launch(); px=(W-PADDLE_W)/2; } }
     function loop(t) {
@@ -1124,7 +1124,7 @@
       const dt = lastT ? Math.min(2.5, (t - lastT) / 16.667) : 1; lastT = t;
       tick += dt;
       if (state==='running') {
-        if (keys.left) px -= 6.5*dt; if (keys.right) px += 6.5*dt;
+        if (keys.left) px -= 12.5*dt; if (keys.right) px += 12.5*dt;
         px = Math.max(0, Math.min(W-PADDLE_W, px));
         ball.x += ball.vx*dt; ball.y += ball.vy*dt;
         if (ball.x-ball.r<0) { ball.x=ball.r; ball.vx*=-1; }
@@ -1133,7 +1133,7 @@
         if (ball.vy>0 && ball.y+ball.r>=PADDLE_Y && ball.y+ball.r<=PADDLE_Y+PADDLE_H+8 && ball.x>=px && ball.x<=px+PADDLE_W) {
           ball.y = PADDLE_Y-ball.r;
           const hit = (ball.x-(px+PADDLE_W/2))/(PADDLE_W/2);
-          const speed = Math.min(4.6, Math.hypot(ball.vx,ball.vy)+0.1);
+          const speed = Math.min(9.2, Math.hypot(ball.vx,ball.vy)+0.15);
           const ang = hit*1.05;
           ball.vx = speed*Math.sin(ang); ball.vy = -Math.abs(speed*Math.cos(ang));
         }
@@ -1212,11 +1212,11 @@
       document.getElementById('pong-you').textContent = sr;
       document.getElementById('pong-cpu').textContent = sl;
     }
-    function serve(dir) { ball = { x:W/2, y:H/2, vx:dir*2.1, vy:(Math.random()*2-1)*1.6, r:6 }; }
+    function serve(dir) { ball = { x:W/2, y:H/2, vx:dir*5.0, vy:(Math.random()*2-1)*3.2, r:6 }; }
     function reset() { lp=rp=(H-PADDLE_H)/2; sl=0; sr=0; serve(Math.random()<0.5?1:-1); state='running'; updateHud(); }
     function bounce(py) {
       const hit=(ball.y-(py+PADDLE_H/2))/(PADDLE_H/2);
-      const speed=Math.min(5.5, Math.hypot(ball.vx,ball.vy)+0.2), ang=hit*0.9;
+      const speed=Math.min(10.2, Math.hypot(ball.vx,ball.vy)+0.3), ang=hit*0.9;
       ball.vx=(ball.vx>0?-1:1)*Math.abs(speed*Math.cos(ang)); ball.vy=speed*Math.sin(ang);
     }
     function loop(t) {
@@ -1224,10 +1224,10 @@
       const dt = lastT ? Math.min(2.5, (t - lastT) / 16.667) : 1; lastT = t;
       tick += dt;
       if (state==='running') {
-        if (keys.up) rp-=6.5*dt; if (keys.down) rp+=6.5*dt;
+        if (keys.up) rp-=12.5*dt; if (keys.down) rp+=12.5*dt;
         rp=clamp(rp,0,H-PADDLE_H);
         const aiC=lp+PADDLE_H/2;                 // CPU tracks ball with capped speed
-        if (aiC<ball.y-8) lp+=3.1*dt; else if (aiC>ball.y+8) lp-=3.1*dt;
+        if (aiC<ball.y-8) lp+=6.0*dt; else if (aiC>ball.y+8) lp-=6.0*dt;
         lp=clamp(lp,0,H-PADDLE_H);
         ball.x+=ball.vx*dt; ball.y+=ball.vy*dt;
         if (ball.y-ball.r<0) { ball.y=ball.r; ball.vy*=-1; }
@@ -1421,19 +1421,50 @@
   }
 
   // ── Focus / expand mode: lifts the active game into a fullscreen overlay so
-  //    clicks and scrolls can't land on the page behind the board ──
+  //    clicks and scrolls can't land on the page behind the board, and asks the
+  //    browser for true fullscreen where supported (overlay is the iOS fallback) ──
   const expandBtn = document.getElementById('arcade-expand');
+  const isExpanded = () => stage.classList.contains('arcade-expanded');
+  function requestFS(el) {
+    const fn = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+    if (fn) { try { const p = fn.call(el); if (p && p.catch) p.catch(()=>{}); } catch(e){} }
+  }
+  function exitFS() {
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      const fn = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+      if (fn) { try { fn.call(document); } catch(e){} }
+    }
+  }
   function setExpanded(on) {
     stage.classList.toggle('arcade-expanded', on);
     document.body.classList.toggle('arcade-locked', on);
     expandBtn.innerHTML = on
       ? '<i class="fas fa-compress"></i>&nbsp; Exit'
       : '<i class="fas fa-expand"></i>&nbsp; Focus';
-    if (on) stage.scrollTop = 0;
+    document.querySelectorAll('.game-expand-btn').forEach(b => {
+      b.innerHTML = on ? '<i class="fas fa-compress"></i>' : '<i class="fas fa-expand"></i>';
+      b.title = on ? 'Exit fullscreen' : 'Fullscreen';
+    });
+    if (on) { stage.scrollTop = 0; requestFS(stage); }
+    else exitFS();
   }
-  expandBtn.addEventListener('click', () => setExpanded(!stage.classList.contains('arcade-expanded')));
+  expandBtn.addEventListener('click', () => setExpanded(!isExpanded()));
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && stage.classList.contains('arcade-expanded')) setExpanded(false);
+    if (e.key === 'Escape' && isExpanded()) setExpanded(false);
+  });
+  // keep overlay in sync if the user leaves browser fullscreen via Esc/F11/gesture
+  ['fullscreenchange','webkitfullscreenchange'].forEach(ev => document.addEventListener(ev, () => {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && isExpanded()) setExpanded(false);
+  }));
+  // give every game its own expand button inside its HUD
+  document.querySelectorAll('.arcade-panel .game-hud').forEach(hud => {
+    const btn = document.createElement('button');
+    btn.className = 'game-btn game-expand-btn';
+    btn.title = 'Fullscreen';
+    btn.innerHTML = '<i class="fas fa-expand"></i>';
+    if (![...hud.children].some(c => c.style && c.style.marginLeft === 'auto')) btn.style.marginLeft = 'auto';
+    btn.addEventListener('click', () => setExpanded(!isExpanded()));
+    hud.appendChild(btn);
   });
 
   document.querySelectorAll('.game-card').forEach(c => c.addEventListener('click', () => openGame(c.dataset.game)));
