@@ -1273,12 +1273,18 @@ body.arcade-locked { overflow: hidden; }
 /* 2048 */
 #g2048-board {
   position: relative; width: 100%; aspect-ratio: 1;
-  background: rgba(0,0,0,0.35); border: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at 16% 12%, rgba(201,168,76,0.16), transparent 46%),
+    radial-gradient(circle at 86% 90%, rgba(0,180,216,0.12), transparent 48%),
+    linear-gradient(160deg, #0a1024, #0c1430 55%, #1a2750);
+  border: 1px solid var(--border-gold);
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.45);
   touch-action: none; overflow: hidden;
 }
 .g2048-bg {
   position: absolute; width: 22%; height: 22%;
-  background: #06091a; border-radius: 4px;
+  background: rgba(255,255,255,0.035); border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.02);
 }
 .g2048-tile {
   position: absolute; width: 22%; height: 22%;
