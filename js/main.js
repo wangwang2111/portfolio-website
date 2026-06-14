@@ -441,6 +441,16 @@ const PROJECTS = {
     lbImg.src = '';
   }
 
+  // profile photos → open full image in the lightbox
+  document.querySelectorAll('.js-photo-zoom').forEach(img => {
+    img.addEventListener('click', e => {
+      e.stopPropagation();
+      lbImg.src = img.dataset.full || img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+
   // open on card click (not on link clicks)
   document.querySelectorAll('.p-card[data-project]').forEach(card => {
     card.addEventListener('click', e => {

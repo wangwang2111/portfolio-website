@@ -640,7 +640,7 @@
       '💼','🧮','⚖️','🔐','🔑','🛡️','⏳','⏰','📅','🎯','🚀','🔥','⚡','🌟','🏆',
       '🥇','🎲','♟️','🃏','🎰','🛎️','📞','🖥️','⌨️','💾'
     ];
-    const COLS = 10, ROWS = 10;
+    const COLS = 8, ROWS = 8;
     const PAIRS = Math.min(Math.floor(COLS*ROWS/2), POOL.length);
     const gridEl = document.getElementById('mem-grid');
     let cards, first, moves, matched, best=null, busy=false;
@@ -867,7 +867,7 @@
     const BIRD_X = 90, BIRD_R = 13;
     const GROUND_H = 30, playH = H - GROUND_H, SKY_W = W;
     let y = H/2, vy = 0, pipes = [], score = 0, best = 0, state = 'idle', raf = null, live = false, lastPipe = 0;
-    let wingPhase = 0, skyScroll = 0, groundScroll = 0;
+    let wingPhase = 0, skyScroll = 0, groundScroll = 0, lastT = 0;
 
     // ── decorative background, generated once ──
     const stars = Array.from({length:36}, () => ({
@@ -909,21 +909,22 @@
     }
     function loop(t) {
       raf = requestAnimationFrame(loop);
+      const dt = lastT ? Math.min(2.5, (t - lastT) / 16.667) : 1; lastT = t;  // frames since last tick (60fps = 1)
       const moving = state === 'running';
 
       // background drifts even on idle/dead so the scene stays alive
-      clouds.forEach(c => { c.x -= c.spd; if (c.x < -70) { c.x = W+40; c.y = 26+Math.random()*110; } });
-      skyScroll += moving ? 0.5 : 0.25;
-      groundScroll += moving ? SPEED : 0.6;
-      wingPhase += moving ? 0.3 : 0.12;
+      clouds.forEach(c => { c.x -= c.spd * dt; if (c.x < -70) { c.x = W+40; c.y = 26+Math.random()*110; } });
+      skyScroll += (moving ? 0.5 : 0.25) * dt;
+      groundScroll += (moving ? SPEED : 0.6) * dt;
+      wingPhase += (moving ? 0.3 : 0.12) * dt;
 
       if (moving) {
         if (!lastPipe) lastPipe = t;
         if (t - lastPipe >= PIPE_IV) { addPipe(); lastPipe = t; }
 
-        vy += GRAV; if (vy > MAX_VY) vy = MAX_VY;
-        y += vy;
-        pipes.forEach(p => p.x -= SPEED);
+        vy += GRAV * dt; if (vy > MAX_VY) vy = MAX_VY;
+        y += vy * dt;
+        pipes.forEach(p => p.x -= SPEED * dt);
         pipes = pipes.filter(p => p.x + PIPE_W > 0);
 
         for (const p of pipes) {
@@ -1084,6 +1085,7 @@
     function setActive(on) {
       live = on;
       if (on) {
+        lastT = 0;                                   // reset delta clock so dt doesn't spike
         if (state === 'running') state = 'idle';   // don't resume mid-fall after switching away
         if (!raf) raf = requestAnimationFrame(loop);
       } else {
@@ -1105,7 +1107,7 @@
     const BRICK_W = (W - GAPB*(COLS+1)) / COLS;
     const PALETTE = ['#c0392b','#e8954b','#e8c97a','#2fae7e','#00b4d8'];
     let px = (W-PADDLE_W)/2, ball = null, bricks = [], score = 0, lives = 3, best = 0;
-    let state = 'idle', raf = null, live = false, tick = 0;
+    let state = 'idle', raf = null, live = false, tick = 0, lastT = 0;
     const keys = {};
     const stars = Array.from({length:30}, () => ({x:Math.random()*W, y:Math.random()*H, s:Math.random()<0.3?2:1, p:Math.random()*6.28}));
 
@@ -1122,12 +1124,14 @@
     function launch() { ball = { x:W/2, y:PADDLE_Y-20, vx:(Math.random()<0.5?-1:1)*1.7, vy:-2.2, r:6 }; }
     function reset() { px=(W-PADDLE_W)/2; score=0; lives=3; buildBricks(); launch(); state='running'; updateHud(); }
     function loseLife() { lives--; updateHud(); if (lives<=0) state='dead'; else { launch(); px=(W-PADDLE_W)/2; } }
-    function loop() {
-      raf = requestAnimationFrame(loop); tick++;
+    function loop(t) {
+      raf = requestAnimationFrame(loop);
+      const dt = lastT ? Math.min(2.5, (t - lastT) / 16.667) : 1; lastT = t;
+      tick += dt;
       if (state==='running') {
-        if (keys.left) px -= 6.5; if (keys.right) px += 6.5;
+        if (keys.left) px -= 6.5*dt; if (keys.right) px += 6.5*dt;
         px = Math.max(0, Math.min(W-PADDLE_W, px));
-        ball.x += ball.vx; ball.y += ball.vy;
+        ball.x += ball.vx*dt; ball.y += ball.vy*dt;
         if (ball.x-ball.r<0) { ball.x=ball.r; ball.vx*=-1; }
         if (ball.x+ball.r>W) { ball.x=W-ball.r; ball.vx*=-1; }
         if (ball.y-ball.r<0) { ball.y=ball.r; ball.vy*=-1; }
@@ -1194,7 +1198,7 @@
       if (e.key==='ArrowLeft'||e.key==='a'||e.key==='A') keys.left=false;
       if (e.key==='ArrowRight'||e.key==='d'||e.key==='D') keys.right=false; });
     document.getElementById('breakout-start').addEventListener('click', reset);
-    function setActive(on) { live=on; if (on) { if (state==='running') state='idle'; if(!raf) raf=requestAnimationFrame(loop); } else { cancelAnimationFrame(raf); raf=null; } draw(); }
+    function setActive(on) { live=on; if (on) { lastT=0; if (state==='running') state='idle'; if(!raf) raf=requestAnimationFrame(loop); } else { cancelAnimationFrame(raf); raf=null; } draw(); }
     draw();
     return { setActive };
   })();
@@ -1206,7 +1210,7 @@
     const W = cvs.width, H = cvs.height;
     const PADDLE_H = 64, PADDLE_W = 10, WIN = 7, LX = 20, RX = W-20-PADDLE_W;
     let lp=(H-PADDLE_H)/2, rp=(H-PADDLE_H)/2, ball=null, sl=0, sr=0;
-    let state='idle', raf=null, live=false, tick=0;
+    let state='idle', raf=null, live=false, tick=0, lastT=0;
     const keys = {};
     const stars = Array.from({length:26}, () => ({x:Math.random()*W, y:Math.random()*H, s:Math.random()<0.3?2:1, p:Math.random()*6.28}));
     const clamp = (v,a,b) => Math.max(a, Math.min(b,v));
@@ -1222,15 +1226,17 @@
       const speed=Math.min(5.5, Math.hypot(ball.vx,ball.vy)+0.2), ang=hit*0.9;
       ball.vx=(ball.vx>0?-1:1)*Math.abs(speed*Math.cos(ang)); ball.vy=speed*Math.sin(ang);
     }
-    function loop() {
-      raf=requestAnimationFrame(loop); tick++;
+    function loop(t) {
+      raf=requestAnimationFrame(loop);
+      const dt = lastT ? Math.min(2.5, (t - lastT) / 16.667) : 1; lastT = t;
+      tick += dt;
       if (state==='running') {
-        if (keys.up) rp-=6.5; if (keys.down) rp+=6.5;
+        if (keys.up) rp-=6.5*dt; if (keys.down) rp+=6.5*dt;
         rp=clamp(rp,0,H-PADDLE_H);
         const aiC=lp+PADDLE_H/2;                 // CPU tracks ball with capped speed
-        if (aiC<ball.y-8) lp+=3.1; else if (aiC>ball.y+8) lp-=3.1;
+        if (aiC<ball.y-8) lp+=3.1*dt; else if (aiC>ball.y+8) lp-=3.1*dt;
         lp=clamp(lp,0,H-PADDLE_H);
-        ball.x+=ball.vx; ball.y+=ball.vy;
+        ball.x+=ball.vx*dt; ball.y+=ball.vy*dt;
         if (ball.y-ball.r<0) { ball.y=ball.r; ball.vy*=-1; }
         if (ball.y+ball.r>H) { ball.y=H-ball.r; ball.vy*=-1; }
         if (ball.vx<0 && ball.x-ball.r<=LX+PADDLE_W && ball.x>LX && ball.y>=lp && ball.y<=lp+PADDLE_H) { bounce(lp); ball.x=LX+PADDLE_W+ball.r; }
@@ -1276,7 +1282,7 @@
       if (e.key==='ArrowUp'||e.key==='w'||e.key==='W') keys.up=false;
       if (e.key==='ArrowDown'||e.key==='s'||e.key==='S') keys.down=false; });
     document.getElementById('pong-start').addEventListener('click', reset);
-    function setActive(on) { live=on; if (on) { if (state==='running') state='idle'; if(!raf) raf=requestAnimationFrame(loop); } else { cancelAnimationFrame(raf); raf=null; } draw(); }
+    function setActive(on) { live=on; if (on) { lastT=0; if (state==='running') state='idle'; if(!raf) raf=requestAnimationFrame(loop); } else { cancelAnimationFrame(raf); raf=null; } draw(); }
     draw();
     return { setActive };
   })();
