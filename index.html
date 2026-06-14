@@ -49,6 +49,10 @@
   <canvas id="hero-canvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-in">
+    <div class="hero-avatar">
+      <img src="./profile-photo.png" alt="Dylan Nguyen" />
+      <span class="hero-avatar-status"><span class="dot"></span>Available</span>
+    </div>
     <div class="hero-eye">AI Engineer @ BMO · Toronto &amp; Remote</div>
     <h1 class="hero-name">
       Dylan
@@ -736,6 +740,31 @@
         <span class="game-card-body"><span class="game-card-name">Reaction</span><span class="game-card-desc">Test your latency</span></span>
         <span class="game-card-play">Play ›</span>
       </button>
+      <button class="game-card" data-game="flappy" style="--gc:#f4b400">
+        <span class="game-card-ico"><i class="fas fa-dove"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Flappy</span><span class="game-card-desc">Flap through the gaps</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="breakout" style="--gc:#e8954b">
+        <span class="game-card-ico"><i class="fas fa-table-tennis-paddle-ball"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Breakout</span><span class="game-card-desc">Smash all the bricks</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="pong" style="--gc:#00b4d8">
+        <span class="game-card-ico"><i class="fas fa-circle-dot"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Pong</span><span class="game-card-desc">Rally against the CPU</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="mines" style="--gc:#c0392b">
+        <span class="game-card-ico"><i class="fas fa-bomb"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Minesweeper</span><span class="game-card-desc">Clear the field</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="whack" style="--gc:#00a878">
+        <span class="game-card-ico"><i class="fas fa-hammer"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Whack-a-Mole</span><span class="game-card-desc">30-second reflex test</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
     </div>
 
     <!-- STAGE · active game -->
@@ -750,6 +779,11 @@
           <button class="qchip" data-game="tetris"><i class="fas fa-shapes"></i> Tetris</button>
           <button class="qchip" data-game="memory"><i class="fas fa-brain"></i> Memory</button>
           <button class="qchip" data-game="reaction"><i class="fas fa-gauge-high"></i> Reaction</button>
+          <button class="qchip" data-game="flappy"><i class="fas fa-dove"></i> Flappy</button>
+          <button class="qchip" data-game="breakout"><i class="fas fa-table-tennis-paddle-ball"></i> Breakout</button>
+          <button class="qchip" data-game="pong"><i class="fas fa-circle-dot"></i> Pong</button>
+          <button class="qchip" data-game="mines"><i class="fas fa-bomb"></i> Mines</button>
+          <button class="qchip" data-game="whack"><i class="fas fa-hammer"></i> Whack</button>
         </div>
       </div>
 
@@ -877,7 +911,7 @@
 
     <!-- MEMORY MATCH -->
     <div class="arcade-panel hidden" id="panel-memory">
-      <div class="game-frame">
+      <div class="game-frame mem-frame">
         <div class="game-hud">
           <div class="game-hud-item">
             <span class="game-hud-label">Moves</span>
@@ -923,6 +957,114 @@
       </div>
     </div>
 
+    <!-- FLAPPY -->
+    <div class="arcade-panel hidden" id="panel-flappy">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Score</span>
+            <span class="game-hud-val" id="flappy-score">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="flappy-best">0</span>
+          </div>
+          <button class="game-btn" id="flappy-start" style="margin-left:auto">Start</button>
+        </div>
+        <canvas id="flappy-canvas" width="400" height="400"></canvas>
+        <div class="game-controls-hint">Click / Tap / Space to flap &nbsp;·&nbsp; clear the gaps</div>
+      </div>
+    </div>
+
+    <!-- BREAKOUT -->
+    <div class="arcade-panel hidden" id="panel-breakout">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Score</span>
+            <span class="game-hud-val" id="breakout-score">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Lives</span>
+            <span class="game-hud-val" id="breakout-lives">3</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="breakout-best">0</span>
+          </div>
+          <button class="game-btn" id="breakout-start" style="margin-left:auto">Start</button>
+        </div>
+        <canvas id="breakout-canvas" width="400" height="400"></canvas>
+        <div class="game-controls-hint">Move with Mouse / Arrow Keys &nbsp;·&nbsp; Tap or Start to play</div>
+      </div>
+    </div>
+
+    <!-- PONG -->
+    <div class="arcade-panel hidden" id="panel-pong">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">You</span>
+            <span class="game-hud-val" id="pong-you">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">CPU</span>
+            <span class="game-hud-val" id="pong-cpu">0</span>
+          </div>
+          <button class="game-btn" id="pong-start" style="margin-left:auto">Start</button>
+        </div>
+        <canvas id="pong-canvas" width="400" height="400"></canvas>
+        <div class="game-controls-hint">Move with Mouse / ↑ ↓ keys &nbsp;·&nbsp; first to 7 wins</div>
+      </div>
+    </div>
+
+    <!-- MINESWEEPER -->
+    <div class="arcade-panel hidden" id="panel-mines">
+      <div class="game-frame mem-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Mines</span>
+            <span class="game-hud-val" id="mines-flags">15</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Time</span>
+            <span class="game-hud-val" id="mines-time">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="mines-best">—</span>
+          </div>
+          <button class="game-btn" id="mines-new" style="margin-left:auto">New Game</button>
+        </div>
+        <div id="mines-grid"></div>
+        <div class="game-controls-hint" id="mines-status">Find all safe cells</div>
+        <div class="game-controls-hint">Click to reveal &nbsp;·&nbsp; Right-click / long-press to flag 🚩</div>
+      </div>
+    </div>
+
+    <!-- WHACK-A-MOLE -->
+    <div class="arcade-panel hidden" id="panel-whack">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Score</span>
+            <span class="game-hud-val" id="whack-score">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Time</span>
+            <span class="game-hud-val" id="whack-time">30</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="whack-best">0</span>
+          </div>
+          <button class="game-btn" id="whack-start" style="margin-left:auto">Start</button>
+        </div>
+        <div id="whack-grid"></div>
+        <div class="game-controls-hint">Bonk the moles as they pop up &nbsp;·&nbsp; 30 seconds on the clock</div>
+      </div>
+    </div>
+
     </div><!-- /#arcade-stage -->
 
   </div>
@@ -941,6 +1083,7 @@
     </p>
     <div class="contact-ctas reveal d2">
       <a href="mailto:ndquang126@gmail.com" class="btn-gold">ndquang126@gmail.com</a>
+      <a href="mailto:dangquang.nguyen@bmo.com" class="btn-outline">dangquang.nguyen@bmo.com (Work)</a>
       <a href="https://www.linkedin.com/in/dylan-nguyen-4b6a52287/" target="_blank" rel="noopener" class="btn-outline">LinkedIn ↗</a>
       <a href="https://github.com/wangwang2111" target="_blank" rel="noopener" class="btn-outline">GitHub ↗</a>
     </div>
