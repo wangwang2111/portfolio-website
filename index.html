@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dylan Nguyen · Data Scientist & ML/GenAI Engineer</title>
+  <meta name="description" content="Portfolio of Dylan Nguyen — Data Scientist, ML/GenAI Engineer, and Quant Trading Systems Builder. Available for contract &amp; full-time roles in Toronto &amp; Remote." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2306091a'/%3E%3Crect x='1' y='1' width='30' height='30' rx='5' fill='none' stroke='%23c9a84c' stroke-width='1'/%3E%3Ctext x='16' y='23' font-family='Georgia%2C serif' font-size='20' font-weight='700' font-style='italic' fill='%23c9a84c' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Fira+Code:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- ================================================================
+     NAV
+================================================================ -->
+<nav id="navbar">
+  <div class="nav-in">
+    <a href="#hero" class="nav-logo">
+      Dylan Nguyen
+      <small>Data Scientist · ML/GenAI</small>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#arcade">Arcade</a></li>
+      <li><a href="mailto:ndquang126@gmail.com" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ================================================================
+     HERO
+================================================================ -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-in">
+    <div class="hero-eye">AI Engineer @ BMO · Toronto &amp; Remote</div>
+    <h1 class="hero-name">
+      Dylan
+      <span class="italic-gold">Nguyen.</span>
+    </h1>
+    <p class="hero-typed">&gt;&nbsp;<span class="typed" id="typed"></span><span class="tcursor">_</span></p>
+    <p class="hero-desc">
+      <strong>AI Engineer at BMO</strong> with 4+ years building
+      <strong>20+ professional dashboards, ETL pipelines, and production AI systems</strong> —
+      multi-agent pipelines, RAG architectures, and quantitative trading strategies.
+      Previously Research Assistant at <strong>ASCI Lab × Siemens</strong>, Trent University.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-gold">View Projects</a>
+      <a href="https://www.linkedin.com/in/dylan-nguyen-4b6a52287/" target="_blank" rel="noopener" class="btn-outline">LinkedIn ↗</a>
+      <a href="mailto:ndquang126@gmail.com" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <aside class="hero-aside">
+    <div class="h-badge"><b>95%</b>&nbsp;MSc GPA · Highest Distinction</div>
+    <div class="h-badge"><b>4+ YRS</b>&nbsp;Industry Experience</div>
+    <div class="h-badge"><b>5+</b>&nbsp;Certifications</div>
+    <div class="h-badge"><b>LIVE</b>&nbsp;Production AI Systems</div>
+  </aside>
+
+  <div class="hero-scroll-ind">
+    <span class="scroll-txt">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TICKER TAPE
+================================================================ -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ================================================================
+     ABOUT
+================================================================ -->
+<section id="about">
+  <div class="container">
+    <div class="section-rule reveal"><span class="section-label">01 · About</span></div>
+    <div class="about-grid">
+
+      <div>
+        <div class="about-profile reveal">
+          <div class="profile-ring">
+            <img src="./profile-photo.png" alt="Dylan Nguyen" class="profile-photo" />
+          </div>
+          <div>
+            <div class="profile-name">Dylan Nguyen</div>
+            <div class="profile-role">AI Engineer @ BMO · ML/GenAI</div>
+            <div class="profile-loc">📍 Toronto, ON 🇨🇦</div>
+          </div>
+        </div>
+        <h2 class="section-heading reveal">Building AI that<br><em>thinks &amp; acts.</em></h2>
+        <p class="about-lead reveal d1">
+          AI Engineer at BMO with 4+ years building
+          <strong>20+ professional dashboards</strong>, ETL pipelines, and production AI systems —
+          multi-agent pipelines, RAG architectures, and quantitative trading strategies.
+        </p>
+        <p class="about-para reveal d2">
+          My work sits at the intersection of quantitative finance and industrial AI.
+          Currently an AI Engineer at <strong>BMO</strong>, building production AI systems for
+          enterprise banking. Previously a Research Assistant at Trent's ASCI Lab in collaboration
+          with Siemens, developing multi-agent systems for building automation and energy optimization.
+        </p>
+        <p class="about-para reveal d2">
+          I care deeply about systems that don't just <em>predict</em> — they reason
+          over context, adapt to new information, and take meaningful actions.
+        </p>
+        <blockquote class="about-quote reveal d3">
+          "Building AI systems that don't just predict —<br>
+          they reason, adapt, and act."
+        </blockquote>
+        <div class="about-socials reveal d4">
+          <a href="https://www.linkedin.com/in/dylan-nguyen-4b6a52287/" target="_blank" rel="noopener" class="s-btn">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a href="https://github.com/wangwang2111" target="_blank" rel="noopener" class="s-btn">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="mailto:ndquang126@gmail.com" class="s-btn">
+            <i class="fas fa-envelope"></i> Email
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal d2">
+        <div class="code-card">
+          <div class="cc-header">
+            <div class="cc-dots"><span></span><span></span><span></span></div>
+            <span class="cc-fname">dylan.py</span>
+            <span class="cc-lang">Python 3.12</span>
+          </div>
+          <div class="cc-body"><pre>
+<span class="ln"> 1</span><span class="kw">class</span> <span class="cn">Dylan</span><span class="pu">:</span>
+
+<span class="ln"> 3</span>  <span class="ky">role</span> <span class="pu">=</span> <span class="pu">[</span>
+<span class="ln"> 4</span>    <span class="st">"Data Scientist"</span><span class="pu">,</span>
+<span class="ln"> 5</span>    <span class="st">"ML/AI/GenAI Engineer"</span><span class="pu">,</span>
+<span class="ln"> 6</span>    <span class="st">"Agentic AI Builder"</span><span class="pu">,</span>
+<span class="ln"> 7</span>  <span class="pu">]</span>
+
+<span class="ln"> 9</span>  <span class="ky">location</span>  <span class="pu">=</span> <span class="st">"Toronto, ON 🇨🇦"</span>
+
+<span class="ln">11</span>  <span class="ky">education</span> <span class="pu">=</span> <span class="pu">{</span>
+<span class="ln">12</span>    <span class="st">"MSc"</span><span class="pu">:</span> <span class="st">"Big Data Analytics"</span><span class="pu">,</span>
+<span class="ln">13</span>    <span class="st">"gpa"</span><span class="pu">:</span> <span class="st">"95% · Highest Honor"</span><span class="pu">,</span>
+<span class="ln">14</span>    <span class="st">"BEng"</span><span class="pu">:</span> <span class="st">"Financial Technology"</span><span class="pu">,</span>
+<span class="ln">15</span>  <span class="pu">}</span>
+
+<span class="ln">17</span>  <span class="ky">currently</span> <span class="pu">=</span> <span class="st">"AI Engineer @ BMO"</span>
+
+<span class="ln">19</span>  <span class="ky">focus</span> <span class="pu">=</span> <span class="pu">[</span>
+<span class="ln">20</span>    <span class="st">"Multi-Agent AI"</span><span class="pu">,</span>
+<span class="ln">21</span>    <span class="st">"RAG Pipelines"</span><span class="pu">,</span>
+<span class="ln">22</span>    <span class="st">"Production ML"</span><span class="pu">,</span>
+<span class="ln">23</span>    <span class="st">"Quant Trading"</span><span class="pu">,</span>
+<span class="ln">24</span>  <span class="pu">]</span>
+
+<span class="ln">26</span>  <span class="ky">open_to</span> <span class="pu">=</span> <span class="st">"Contract &amp; Full-Time · Data Sci · GenAI · Analytics"</span>
+
+<span class="ln">28</span>  <span class="kw">def</span> <span class="cn">build</span><span class="pu">(</span><span class="ky">self</span><span class="pu">):</span>
+<span class="ln">29</span>    <span class="cm"># systems that reason, adapt, and act</span>
+<span class="ln">30</span>    <span class="kw">return</span> <span class="st">"AI × Finance → Impact"</span>
+</pre></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PROJECTS
+================================================================ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-rule reveal"><span class="section-label">02 · Projects</span></div>
+    <div style="margin-bottom:48px;">
+      <h2 class="section-heading reveal">Featured <em>Work.</em></h2>
+      <p class="section-sub reveal d1">Production systems, research projects, and open-source tools.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Building Control Assistant -->
+      <div class="p-card wide has-media reveal" style="--c:#00b4d8" data-project="bca">
+        <div class="p-body">
+          <div class="p-inner">
+            <div class="p-meta">
+              <span class="p-type">Multi-Agent Platform</span>
+              <span class="p-status priv"><span class="dot"></span>Private · Siemens × ASCI Lab</span>
+            </div>
+            <h3 class="p-title">Building Control Assistant</h3>
+            <p class="p-sub">Production-grade AI for occupancy analysis &amp; energy optimization</p>
+            <p class="p-desc">
+              Flask platform with a Chart.js admin dashboard, real-time SSE pipeline streaming, and a
+              human-in-the-loop confirmation loop. Multi-LLM routing across Claude, GPT-4o, and
+              Ollama/DeepSeek. Self-healing execution agents backed by ChromaDB + FAISS RAG.
+            </p>
+            <div class="p-tags">
+              <span class="p-tag">Multi-Agent AI</span><span class="p-tag">RAG Pipeline</span>
+              <span class="p-tag">Multi-LLM Routing</span><span class="p-tag">Flask</span>
+              <span class="p-tag">ChromaDB</span><span class="p-tag">FAISS</span>
+              <span class="p-tag">Self-Healing Agents</span><span class="p-tag">HITL</span>
+              <span class="p-tag">SSE Streaming</span>
+            </div>
+            <div class="p-links">
+              <span class="p-link dim"><i class="fas fa-lock"></i>&nbsp;Private Repository</span>
+            </div>
+          </div>
+          <div class="p-media">
+            <img src="./architecture.gif" alt="System architecture diagram" loading="lazy" />
+            <span class="p-media-label">System Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Signet Trade -->
+      <div class="p-card wide has-media reveal d1" style="--c:#c9a84c" data-project="signet">
+        <div class="p-body">
+          <div class="p-inner">
+            <div class="p-meta">
+              <span class="p-type">Quant Trading System</span>
+              <span class="p-status pub"><span class="dot"></span>GitHub</span>
+            </div>
+            <h3 class="p-title">Signet Trade</h3>
+            <p class="p-sub">Multi-AI Autonomous Trading Agent — Stocks &amp; Forex</p>
+            <p class="p-desc">
+              End-to-end autonomous trading system combining TCN-LSTM hybrid signal generation with
+              multi-agent orchestration. Live execution via Oanda API (Forex) and IB Gateway (Stocks).
+              Walk-forward validation, vol-adjusted stop-loss, and drawdown controls.
+            </p>
+            <div class="p-tags">
+              <span class="p-tag">TCN-LSTM</span><span class="p-tag">Oanda API</span>
+              <span class="p-tag">IB Gateway</span><span class="p-tag">Multi-Agent</span>
+              <span class="p-tag">Risk Management</span><span class="p-tag">Walk-Forward</span>
+              <span class="p-tag">Portfolio Allocation</span>
+            </div>
+            <div class="p-links">
+              <a href="https://github.com/wangwang2111/stocks-and-forex-quantitative-trade-bot" target="_blank" rel="noopener" class="p-link accent">
+                <i class="fab fa-github"></i>&nbsp;View on GitHub
+              </a>
+            </div>
+          </div>
+          <div class="p-media">
+            <img src="./signet_multi_agent_architecture.gif" alt="Multi-agent architecture diagram" loading="lazy" />
+            <span class="p-media-label">Multi-Agent Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fraud Detection -->
+      <div class="p-card reveal" style="--c:#e25a1c" data-project="fraud">
+        <div class="p-inner">
+          <div class="p-meta">
+            <span class="p-type">Big Data Pipeline</span>
+            <span class="p-status pub"><span class="dot"></span>Open Source</span>
+          </div>
+          <h3 class="p-title">Real-Time Fraud Detection</h3>
+          <p class="p-sub">Spark + Kafka + LLM Explanations</p>
+          <p class="p-desc">
+            Scalable scam detection pipeline for phone dialogue transcripts.
+            Spark ML for classification, Kafka for streaming ingestion,
+            LLM-generated natural language explanations per flagged call.
+          </p>
+          <div class="p-tags">
+            <span class="p-tag">Apache Spark</span><span class="p-tag">Kafka Streaming</span>
+            <span class="p-tag">LLM Explanations</span><span class="p-tag">NLP</span>
+          </div>
+          <div class="p-links">
+            <a href="https://github.com/wangwang2111/fraud-detection-spark-kafka-llm" target="_blank" rel="noopener" class="p-link accent">
+              <i class="fab fa-github"></i>&nbsp;GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collision Forecasting -->
+      <div class="p-card reveal d1 media-peek" style="--c:#0072c6" data-project="collision">
+        <div class="p-body">
+          <div class="p-inner">
+            <div class="p-meta">
+              <span class="p-type">Deep Learning · Azure</span>
+              <span class="p-status priv"><span class="dot"></span>Private</span>
+            </div>
+            <h3 class="p-title">Collision Forecasting System</h3>
+            <p class="p-sub">Azure × Databricks · CNN-LSTM-Transformer</p>
+            <p class="p-desc">
+              Dual-model forecasting for Toronto traffic collisions under weather conditions.
+              CNN-LSTM-Transformer architecture with SHAP explainability and Power BI dashboard.
+              Deployed on Azure Databricks.
+            </p>
+            <div class="p-tags">
+              <span class="p-tag">Azure</span><span class="p-tag">Databricks</span>
+              <span class="p-tag">CNN-LSTM-Transformer</span><span class="p-tag">SHAP</span>
+              <span class="p-tag">Power BI</span>
+            </div>
+            <div class="p-links">
+              <span class="p-link dim"><i class="fas fa-lock"></i>&nbsp;Private</span>
+            </div>
+          </div>
+          <div class="p-media">
+            <img src="./dashboard_collisions.gif" alt="Collision dashboard preview" loading="lazy" />
+            <span class="p-media-label">Power BI Dashboard</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- B2B Anomaly Detection -->
+      <div class="p-card reveal d2 media-peek" style="--c:#00a878" data-project="anomaly">
+        <div class="p-body">
+          <div class="p-inner">
+            <div class="p-meta">
+              <span class="p-type">Unsupervised ML · MLOps</span>
+              <span class="p-status pub"><span class="dot"></span>Open Source</span>
+            </div>
+            <h3 class="p-title">B2B Anomaly Detection</h3>
+            <p class="p-sub">Ensemble Unsupervised ML · 1M+ Transactions</p>
+            <p class="p-desc">
+              Unsupervised system flagging B2B customers with unusual transaction patterns.
+              Ensemble of Isolation Forest, LOF, COPOD, and ECOD on RFM + behavioral features.
+              MLflow experiment tracking, PSI drift detection, and configuration-driven pipeline.
+            </p>
+            <div class="p-tags">
+              <span class="p-tag">Isolation Forest</span><span class="p-tag">LOF</span>
+              <span class="p-tag">COPOD / ECOD</span><span class="p-tag">MLflow</span>
+              <span class="p-tag">PyOD</span><span class="p-tag">RFM Features</span>
+              <span class="p-tag">PSI Drift</span>
+            </div>
+            <div class="p-links">
+              <a href="https://github.com/wangwang2111/anomoly_detection_unsupervised" target="_blank" rel="noopener" class="p-link accent">
+                <i class="fab fa-github"></i>&nbsp;GitHub
+              </a>
+            </div>
+          </div>
+          <div class="p-media">
+            <img src="./anomoly_detection_pipeline.png" alt="Anomaly detection pipeline diagram" loading="lazy" />
+            <span class="p-media-label">Detection Pipeline</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RAG Application -->
+      <div class="p-card reveal d2" style="--c:#1c3c3c" data-project="rag">
+        <div class="p-inner">
+          <div class="p-meta">
+            <span class="p-type">Full-Stack AI</span>
+            <span class="p-status pub"><span class="dot"></span>Open Source</span>
+          </div>
+          <h3 class="p-title">RAG Application</h3>
+          <p class="p-sub">React + Flask · LangChain · End-to-End</p>
+          <p class="p-desc">
+            Full-stack RAG system with a React frontend and Flask backend.
+            LangChain orchestration for document ingestion, chunking,
+            embedding, retrieval, and generation.
+          </p>
+          <div class="p-tags">
+            <span class="p-tag">LangChain</span><span class="p-tag">React</span>
+            <span class="p-tag">Flask</span><span class="p-tag">RAG</span>
+          </div>
+          <div class="p-links">
+            <a href="https://github.com/wangwang2111/rag-application" target="_blank" rel="noopener" class="p-link accent">
+              <i class="fab fa-github"></i>&nbsp;GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mancala AI -->
+      <div class="p-card reveal" style="--c:#6a0572" data-project="mancala">
+        <div class="p-inner">
+          <div class="p-meta">
+            <span class="p-type">AI Game Agent</span>
+            <span class="p-status pub"><span class="dot"></span>Open Source</span>
+          </div>
+          <h3 class="p-title">Mancala AI</h3>
+          <p class="p-sub">DQN + Classical Search · Full-Stack Flask</p>
+          <p class="p-desc">
+            Web-playable Mancala game with five AI opponents:
+            DQN, Minimax, Alpha-Beta pruning, MCTS,
+            and an advanced heuristic agent.
+          </p>
+          <div class="p-tags">
+            <span class="p-tag">DQN</span><span class="p-tag">Minimax</span>
+            <span class="p-tag">Alpha-Beta</span><span class="p-tag">MCTS</span>
+            <span class="p-tag">Flask</span>
+          </div>
+          <div class="p-links">
+            <a href="https://github.com/wangwang2111/AI-algorithm-for-Mancala-game" target="_blank" rel="noopener" class="p-link accent">
+              <i class="fab fa-github"></i>&nbsp;GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canada Quant -->
+      <div class="p-card reveal d1" style="--c:#c9a84c" data-project="canada">
+        <div class="p-inner">
+          <div class="p-meta">
+            <span class="p-type">Quantitative Finance</span>
+            <span class="p-status pub"><span class="dot"></span>Open Source</span>
+          </div>
+          <h3 class="p-title">Canada Quantamental Strategies</h3>
+          <p class="p-sub">ML Factor Models · Canadian Equity Market</p>
+          <p class="p-desc">
+            ML-driven factor models combined with fundamental signals for the
+            Canadian equity market. Quantamental approach blending systematic
+            signals with macro context.
+          </p>
+          <div class="p-tags">
+            <span class="p-tag">Factor Models</span><span class="p-tag">XGBoost</span>
+            <span class="p-tag">Canadian Equities</span><span class="p-tag">Backtesting</span>
+          </div>
+          <div class="p-links">
+            <a href="https://github.com/wangwang2111/canada-quantamental-investing-strategies" target="_blank" rel="noopener" class="p-link accent">
+              <i class="fab fa-github"></i>&nbsp;GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coin98vn -->
+      <div class="p-card reveal d2" style="--c:#092e20" data-project="coin98">
+        <div class="p-inner">
+          <div class="p-meta">
+            <span class="p-type">Web Platform</span>
+            <span class="p-status pub"><span class="dot"></span>Open Source</span>
+          </div>
+          <h3 class="p-title">Coin98vn</h3>
+          <p class="p-sub">Django · Crypto News Platform</p>
+          <p class="p-desc">
+            Full-stack crypto news and community platform built with Django.
+            User authentication, dynamic content rendering, and responsive design.
+          </p>
+          <div class="p-tags">
+            <span class="p-tag">Django</span><span class="p-tag">User Auth</span>
+            <span class="p-tag">PostgreSQL</span><span class="p-tag">FinTech</span>
+          </div>
+          <div class="p-links">
+            <a href="https://github.com/wangwang2111/coin98vn-django" target="_blank" rel="noopener" class="p-link accent">
+              <i class="fab fa-github"></i>&nbsp;GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TECH STACK
+================================================================ -->
+<section id="stack">
+  <div class="container">
+    <div class="section-rule reveal"><span class="section-label">03 · Tech Stack</span></div>
+    <div style="margin-bottom:48px;">
+      <h2 class="section-heading reveal">Tools of the <em>Trade.</em></h2>
+    </div>
+    <div class="stack-grid">
+
+      <div class="s-cat reveal">
+        <div class="s-cat-hd">
+          <div class="s-icon"><i class="fas fa-brain"></i></div>
+          <span class="s-title">AI / ML &amp; GenAI</span>
+        </div>
+        <div class="s-items">
+          <span class="s-item">LangChain</span><span class="s-item">LlamaIndex</span>
+          <span class="s-item">RAG Pipelines</span><span class="s-item">ChromaDB</span>
+          <span class="s-item">FAISS</span><span class="s-item">XGBoost</span>
+          <span class="s-item">TCN-LSTM</span><span class="s-item">Transformers</span>
+          <span class="s-item">Multi-Agent Systems</span><span class="s-item">HITL</span>
+        </div>
+      </div>
+
+      <div class="s-cat reveal d1">
+        <div class="s-cat-hd">
+          <div class="s-icon"><i class="fas fa-robot"></i></div>
+          <span class="s-title">LLM Orchestration</span>
+        </div>
+        <div class="s-items">
+          <span class="s-item">Claude (Anthropic)</span><span class="s-item">GPT-4o</span>
+          <span class="s-item">Ollama</span><span class="s-item">DeepSeek</span>
+          <span class="s-item">Multi-LLM Routing</span>
+        </div>
+      </div>
+
+      <div class="s-cat reveal d2">
+        <div class="s-cat-hd">
+          <div class="s-icon"><i class="fas fa-database"></i></div>
+          <span class="s-title">Data Engineering</span>
+        </div>
+        <div class="s-items">
+          <span class="s-item">Apache Spark</span><span class="s-item">Apache Kafka</span>
+          <span class="s-item">Hadoop HDFS</span><span class="s-item">Apache Hive</span>
+          <span class="s-item">Airflow</span><span class="s-item">dbt</span>
+          <span class="s-item">Delta Lake</span><span class="s-item">ZooKeeper</span>
+        </div>
+      </div>
+
+      <div class="s-cat reveal">
+        <div class="s-cat-hd">
+          <div class="s-icon"><i class="fas fa-cloud"></i></div>
+          <span class="s-title">Cloud &amp; MLOps</span>
+        </div>
+        <div class="s-items">
+          <span class="s-item">Azure</span><span class="s-item">Databricks</span>
+          <span class="s-item">Azure Data Factory</span><span class="s-item">Docker</span>
+          <span class="s-item">MLflow</span>
+        </div>
+      </div>
+
+      <div class="s-cat reveal d1">
+        <div class="s-cat-hd">
+          <div class="s-icon"><i class="fas fa-code"></i></div>
+          <span class="s-title">Languages &amp; Frameworks</span>
+        </div>
+        <div class="s-items">
+          <span class="s-item">Python</span><span class="s-item">SQL</span>
+          <span class="s-item">JavaScript</span><span class="s-item">Flask</span>
+          <span class="s-item">FastAPI</span><span class="s-item">React</span>
+          <span class="s-item">Django</span><span class="s-item">Playwright</span>
+        </div>
+      </div>
+
+      <div class="s-cat reveal d2">
+        <div class="s-cat-hd">
+          <div class="s-icon"><i class="fas fa-chart-bar"></i></div>
+          <span class="s-title">Databases &amp; BI</span>
+        </div>
+        <div class="s-items">
+          <span class="s-item">PostgreSQL</span><span class="s-item">MongoDB</span>
+          <span class="s-item">Redis</span><span class="s-item">MySQL</span>
+          <span class="s-item">Power BI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CERTIFICATIONS
+================================================================ -->
+<section id="certs">
+  <div class="container">
+    <div class="section-rule reveal"><span class="section-label">04 · Certifications</span></div>
+    <div style="margin-bottom:48px;">
+      <h2 class="section-heading reveal">Validated <em>Expertise.</em></h2>
+    </div>
+    <div class="certs-row">
+      <div class="cert-card reveal">
+        <div class="cert-in">
+          <span class="cert-ico">🧱</span>
+          <div class="cert-by">Databricks</div>
+          <div class="cert-nm">Associate Data Engineer</div>
+        </div>
+      </div>
+      <div class="cert-card reveal d1">
+        <div class="cert-in">
+          <span class="cert-ico">☁️</span>
+          <div class="cert-by">Microsoft</div>
+          <div class="cert-nm">Azure Data Engineer</div>
+        </div>
+      </div>
+      <div class="cert-card reveal d2">
+        <div class="cert-in">
+          <span class="cert-ico">🗃️</span>
+          <div class="cert-by">SQL</div>
+          <div class="cert-nm">SQL Certified</div>
+        </div>
+      </div>
+      <div class="cert-card reveal d3">
+        <div class="cert-in">
+          <span class="cert-ico">🐍</span>
+          <div class="cert-by">Python</div>
+          <div class="cert-nm">Data Science &amp; Visualization</div>
+        </div>
+      </div>
+      <div class="cert-card reveal d4">
+        <div class="cert-in">
+          <span class="cert-ico">📊</span>
+          <div class="cert-by">Microsoft</div>
+          <div class="cert-nm">Power BI Certified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     EDUCATION
+================================================================ -->
+<section id="education">
+  <div class="container">
+    <div class="section-rule reveal"><span class="section-label">05 · Experience &amp; Education</span></div>
+    <div style="margin-bottom:48px;">
+      <h2 class="section-heading reveal">Experience &amp; <em>Foundation.</em></h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal" style="--ec:#0072c6">
+        <div class="edu-deg">AI Engineer</div>
+        <div class="edu-sch">BMO · Toronto, ON</div>
+        <div class="edu-detail">Building production AI systems for enterprise banking — GenAI applications, multi-agent pipelines, and ML solutions at scale.</div>
+        <span class="edu-badge">Since Apr 2026 · Current</span>
+      </div>
+      <div class="edu-card reveal d1" style="--ec:var(--cyan)">
+        <div class="edu-deg">MSc Big Data Analytics</div>
+        <div class="edu-sch">Trent University · Peterborough, ON</div>
+        <div class="edu-detail">Research in industrial AI and multi-agent systems at the ASCI Lab in collaboration with Siemens. GPA: 95%.</div>
+        <span class="edu-badge">Highest Distinction</span>
+      </div>
+      <div class="edu-card reveal d1" style="--ec:var(--gold)">
+        <div class="edu-deg">BEng Financial Technology</div>
+        <div class="edu-sch">National Economics University · Hanoi, Vietnam</div>
+        <div class="edu-detail">Intersection of software engineering, data science, and quantitative finance. Focus on algorithmic trading and fintech applications.</div>
+        <span class="edu-badge">High Distinction</span>
+      </div>
+      <div class="edu-card reveal d2" style="--ec:#6a0572">
+        <div class="edu-deg">Research Assistant</div>
+        <div class="edu-sch">ASCI Lab × Siemens · Trent University</div>
+        <div class="edu-detail">Developed multi-agent AI systems for building automation and energy optimization. Industry collaboration bridging research and production deployment.</div>
+        <span class="edu-badge">Research · 2025–2026</span>
+      </div>
+      <div class="edu-card reveal d3" style="--ec:var(--emerald)">
+        <div class="edu-deg">Areas of Interest</div>
+        <div class="edu-sch">Research &amp; Practice</div>
+        <div class="edu-detail">Agentic AI systems · FinTech &amp; Quant Trading · Industrial AI · Production ML Engineering · RAG &amp; Knowledge Systems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     GITHUB STATS
+================================================================ -->
+<section id="stats">
+  <div class="container">
+    <div class="section-rule reveal"><span class="section-label">06 · GitHub</span></div>
+    <div style="margin-bottom:48px;">
+      <h2 class="section-heading reveal">By the <em>Numbers.</em></h2>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card reveal">
+        <div class="stat-n" data-target="4">0</div>
+        <div class="stat-l">Years Experience</div>
+      </div>
+      <div class="stat-card reveal d1">
+        <div class="stat-n" data-target="8">0</div>
+        <div class="stat-l">Major Projects</div>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-n" data-target="5">0</div>
+        <div class="stat-l">Certifications</div>
+      </div>
+      <div class="stat-card reveal d3">
+        <div class="stat-n" data-target="95">0</div>
+        <div class="stat-l">MSc GPA %</div>
+      </div>
+    </div>
+    <div class="gh-imgs reveal">
+      <img
+        src="https://github-readme-stats.vercel.app/api?username=wangwang2111&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&bg_color=0d1117&title_color=c9a84c&icon_color=00b4d8"
+        alt="Dylan's GitHub Stats" loading="lazy"
+      />
+      <img
+        src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangwang2111&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=c9a84c"
+        alt="Top Languages" loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     ARCADE
+================================================================ -->
+<section id="arcade">
+  <div class="container">
+    <div class="section-rule reveal"><span class="section-label">07 · Arcade</span></div>
+    <div style="margin-bottom:48px;">
+      <h2 class="section-heading reveal">Quant <em>Arcade.</em></h2>
+      <p class="section-sub reveal d1">Take a break — pick a game from the library. Seven built right into the portfolio.</p>
+    </div>
+
+    <!-- LIBRARY · game picker -->
+    <div class="game-library reveal" id="arcade-library">
+      <button class="game-card" data-game="snake" style="--gc:#00b4d8">
+        <span class="game-card-ico"><i class="fas fa-worm"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Snake</span><span class="game-card-desc">Classic grid chase</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="g2048" style="--gc:#c9a84c">
+        <span class="game-card-ico"><i class="fas fa-table-cells"></i></span>
+        <span class="game-card-body"><span class="game-card-name">2048</span><span class="game-card-desc">Merge the tiles</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="market" style="--gc:#00a878">
+        <span class="game-card-ico"><i class="fas fa-chart-line"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Market Sim</span><span class="game-card-desc">Turn-based trading</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="blitz" style="--gc:#e8c97a">
+        <span class="game-card-ico"><i class="fas fa-bolt"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Blitz</span><span class="game-card-desc">60-second trading sprint</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="tetris" style="--gc:#6a0572">
+        <span class="game-card-ico"><i class="fas fa-shapes"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Tetris</span><span class="game-card-desc">Stack &amp; clear lines</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="memory" style="--gc:#0072c6">
+        <span class="game-card-ico"><i class="fas fa-brain"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Memory</span><span class="game-card-desc">Match the pairs</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+      <button class="game-card" data-game="reaction" style="--gc:#c0392b">
+        <span class="game-card-ico"><i class="fas fa-gauge-high"></i></span>
+        <span class="game-card-body"><span class="game-card-name">Reaction</span><span class="game-card-desc">Test your latency</span></span>
+        <span class="game-card-play">Play ›</span>
+      </button>
+    </div>
+
+    <!-- STAGE · active game -->
+    <div id="arcade-stage" class="arcade-hide">
+      <div class="arcade-bar">
+        <button class="game-btn" id="arcade-back"><i class="fas fa-arrow-left"></i>&nbsp; All Games</button>
+        <div class="arcade-quick">
+          <button class="qchip" data-game="snake"><i class="fas fa-worm"></i> Snake</button>
+          <button class="qchip" data-game="g2048"><i class="fas fa-table-cells"></i> 2048</button>
+          <button class="qchip" data-game="market"><i class="fas fa-chart-line"></i> Market</button>
+          <button class="qchip" data-game="blitz"><i class="fas fa-bolt"></i> Blitz</button>
+          <button class="qchip" data-game="tetris"><i class="fas fa-shapes"></i> Tetris</button>
+          <button class="qchip" data-game="memory"><i class="fas fa-brain"></i> Memory</button>
+          <button class="qchip" data-game="reaction"><i class="fas fa-gauge-high"></i> Reaction</button>
+        </div>
+      </div>
+
+    <!-- SNAKE -->
+    <div class="arcade-panel" id="panel-snake">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Score</span>
+            <span class="game-hud-val" id="snake-score">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="snake-best">0</span>
+          </div>
+          <button class="game-btn" id="snake-start" style="margin-left:auto">Start</button>
+        </div>
+        <canvas id="snake-canvas" width="400" height="400"></canvas>
+        <div class="game-controls-hint">Arrow Keys / WASD &nbsp;·&nbsp; Tap or Start to play &nbsp;·&nbsp; Swipe on mobile</div>
+      </div>
+    </div>
+
+    <!-- 2048 -->
+    <div class="arcade-panel hidden" id="panel-g2048">
+      <div class="game-frame g2048-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Score</span>
+            <span class="game-hud-val" id="g2048-score">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="g2048-best">0</span>
+          </div>
+          <button class="game-btn" id="g2048-new" style="margin-left:auto">New Game</button>
+        </div>
+        <div id="g2048-board"></div>
+        <div class="game-controls-hint">Arrow Keys / WASD &nbsp;·&nbsp; Swipe on mobile</div>
+      </div>
+    </div>
+
+    <!-- MARKET SIM (turn-based · 5 stocks) -->
+    <div class="arcade-panel hidden" id="panel-market">
+      <div class="game-frame wide">
+        <div class="market-hud">
+          <div class="market-stat"><span class="game-hud-label">Cash</span><span class="game-hud-val" id="mkt-cash">$1,000,000</span></div>
+          <div class="market-stat"><span class="game-hud-label">Equity</span><span class="game-hud-val" id="mkt-equity">$0</span></div>
+          <div class="market-stat"><span class="game-hud-label">Net Worth</span><span class="game-hud-val" id="mkt-net">$1,000,000</span></div>
+          <div class="market-stat"><span class="game-hud-label">P&amp;L</span><span class="game-hud-val" id="mkt-pnl">+$0</span></div>
+          <div class="market-stat"><span class="game-hud-label">Last Turn</span><span class="game-hud-val" id="mkt-turnpnl">—</span></div>
+          <div class="market-stat"><span class="game-hud-label">Turn</span><span class="game-hud-val" id="mkt-turn">1</span></div>
+        </div>
+        <div class="mkt-pf-wrap">
+          <div class="mkt-pf-head">
+            <span class="game-hud-label">Portfolio Net Worth</span>
+            <span class="mkt-pf-val" id="mkt-pf-now">$1,000,000</span>
+          </div>
+          <canvas id="mkt-pf-chart" width="640" height="130"></canvas>
+        </div>
+        <div id="mkt-stocks"></div>
+        <div class="mkt-controls">
+          <div class="mkt-freq">
+            <span class="game-hud-label">Cadence</span>
+            <button class="freq-btn active" data-freq="weekly">Weekly</button>
+            <button class="freq-btn" data-freq="biweekly">Biweekly</button>
+            <button class="freq-btn" data-freq="monthly">Monthly</button>
+          </div>
+          <div class="market-actions">
+            <button class="game-btn buy" id="mkt-buyall">Buy All</button>
+            <button class="game-btn endturn" id="mkt-endturn">End Week ▶</button>
+            <button class="game-btn" id="mkt-reset">Reset</button>
+          </div>
+        </div>
+        <div class="game-controls-hint">Buy &amp; sell at current prices, then End Turn — weekly = 5 moves, biweekly = 10, monthly = 21 per turn</div>
+      </div>
+    </div>
+
+    <!-- TRADING BLITZ (60-second timed) -->
+    <div class="arcade-panel hidden" id="panel-blitz">
+      <div class="game-frame wide">
+        <div class="market-hud">
+          <div class="market-stat"><span class="game-hud-label">Time</span><span class="game-hud-val" id="blitz-time">1:00</span></div>
+          <div class="market-stat"><span class="game-hud-label">Cash</span><span class="game-hud-val" id="blitz-cash">$100,000</span></div>
+          <div class="market-stat"><span class="game-hud-label">Position</span><span class="game-hud-val" id="blitz-pos">Flat</span></div>
+          <div class="market-stat"><span class="game-hud-label">P&amp;L</span><span class="game-hud-val" id="blitz-pnl">+$0</span></div>
+          <div class="market-stat"><span class="game-hud-label">Best Run</span><span class="game-hud-val" id="blitz-best">—</span></div>
+        </div>
+        <div class="market-price-row">
+          <span class="market-ticker" id="blitz-tk">NVDA</span>
+          <span class="market-price" id="blitz-price">$120.00</span>
+          <span class="market-change up" id="blitz-chg">+0.00%</span>
+        </div>
+        <canvas id="blitz-chart" width="640" height="150"></canvas>
+        <div class="market-actions">
+          <button class="game-btn buy" id="blitz-buy">Go Long (Buy All)</button>
+          <button class="game-btn sell" id="blitz-sell">Go Flat (Sell All)</button>
+          <button class="game-btn endturn" id="blitz-start">Start Blitz</button>
+        </div>
+        <div class="game-controls-hint">60-second blitz — go long before the price rises, go flat before it drops. Auto-liquidates at the buzzer. Beat your best run.</div>
+      </div>
+    </div>
+
+    <!-- TETRIS -->
+    <div class="arcade-panel hidden" id="panel-tetris">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Score</span>
+            <span class="game-hud-val" id="tetris-score">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Lines</span>
+            <span class="game-hud-val" id="tetris-lines">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="tetris-best">0</span>
+          </div>
+          <button class="game-btn" id="tetris-start" style="margin-left:auto">Start</button>
+        </div>
+        <canvas id="tetris-canvas" width="240" height="480"></canvas>
+        <div class="game-controls-hint">← → move &nbsp;·&nbsp; ↑ rotate &nbsp;·&nbsp; ↓ soft drop &nbsp;·&nbsp; Space hard drop &nbsp;·&nbsp; Swipe / tap on mobile</div>
+      </div>
+    </div>
+
+    <!-- MEMORY MATCH -->
+    <div class="arcade-panel hidden" id="panel-memory">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Moves</span>
+            <span class="game-hud-val" id="mem-moves">0</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Matched</span>
+            <span class="game-hud-val" id="mem-matched">0/8</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="mem-best">—</span>
+          </div>
+          <button class="game-btn" id="mem-new" style="margin-left:auto">New Game</button>
+        </div>
+        <div id="mem-grid"></div>
+        <div class="game-controls-hint">Flip two cards to find matching pairs</div>
+      </div>
+    </div>
+
+    <!-- REACTION / LATENCY TEST -->
+    <div class="arcade-panel hidden" id="panel-reaction">
+      <div class="game-frame">
+        <div class="game-hud">
+          <div class="game-hud-item">
+            <span class="game-hud-label">Last</span>
+            <span class="game-hud-val" id="rx-last">—</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Best</span>
+            <span class="game-hud-val" id="rx-best">—</span>
+          </div>
+          <div class="game-hud-item">
+            <span class="game-hud-label">Avg (5)</span>
+            <span class="game-hud-val" id="rx-avg">—</span>
+          </div>
+        </div>
+        <div id="rx-pad">
+          <div class="rx-main" id="rx-main">Click to begin</div>
+          <div class="rx-sub" id="rx-sub">Execution latency test</div>
+        </div>
+        <div class="game-controls-hint">Click the moment the panel turns green — measures reaction in ms</div>
+      </div>
+    </div>
+
+    </div><!-- /#arcade-stage -->
+
+  </div>
+</section>
+
+<!-- ================================================================
+     CONTACT
+================================================================ -->
+<section id="contact">
+  <div class="container">
+    <h2 class="contact-h reveal">Let's build something<br><em>remarkable.</em></h2>
+    <p class="contact-sub reveal d1">
+      Open to contract &amp; full-time roles in Data Science, Data Engineering,
+      ML/AI/GenAI Engineering, and Analytics Engineering.
+      Toronto &amp; Remote.
+    </p>
+    <div class="contact-ctas reveal d2">
+      <a href="mailto:ndquang126@gmail.com" class="btn-gold">ndquang126@gmail.com</a>
+      <a href="https://www.linkedin.com/in/dylan-nguyen-4b6a52287/" target="_blank" rel="noopener" class="btn-outline">LinkedIn ↗</a>
+      <a href="https://github.com/wangwang2111" target="_blank" rel="noopener" class="btn-outline">GitHub ↗</a>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="footer-in">
+          <span class="f-copy">© 2025 Dylan Nguyen · Built with care.</span>
+          <div class="f-status"><span class="dot"></span>Open to Contract &amp; Full-Time</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- ================================================================
+     SCRIPTS
+================================================================ -->
+<!-- Project Modal -->
+<div id="proj-overlay" role="dialog" aria-modal="true" aria-label="Project details">
+  <div id="proj-modal">
+    <button id="proj-close" aria-label="Close"><i class="fas fa-times"></i></button>
+    <div class="pm-body" id="proj-modal-body"></div>
+  </div>
+</div>
+
+<!-- Image Lightbox -->
+<div id="pm-lightbox">
+  <button id="pm-lightbox-close" aria-label="Close image"><i class="fas fa-times"></i></button>
+  <img id="pm-lightbox-img" src="" alt="" />
+</div>
+
+<script defer src="js/main.js"></script>
+<script defer src="js/arcade.js"></script>
+</body>
+</html>
